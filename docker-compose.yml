@@ -1,0 +1,62 @@
+version: '3'
+
+networks:
+  default:
+
+services:
+
+  gohello:
+    image: gohello
+    container_name: gohello.ottest
+    environment:
+      - JAEGER_AGENT_ADDR=jaeger.ottest:6831
+      - HELLO_ADDR=:8080
+      - SERVICES=http://nodehello.ottest:3000,http://nesthello.ottest:3000
+    ports:
+      - 8080:8080
+    networks:
+      default:
+        aliases:
+          - gohello.ottest
+
+  nodehello:
+    image: nodehello
+    container_name: nodehello.ottest
+    environment:
+      - JAEGER_ENDPOINT=http://jaeger.ottest:14268/api/traces
+    ports:
+      - 8081:3000
+    networks:
+      default:
+        aliases:
+          - nodehello.ottest
+
+  nesthello:
+    image: nesthello
+    container_name: nesthello.ottest
+    environment:
+      - JAEGER_ENDPOINT=http://jaeger.ottest:14268/api/traces
+    ports:
+      - 8082:3000
+    networks:
+      default:
+        aliases:
+          - nesthello.ottest
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger.ottest
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14268:14268
+      - 9411:9411
+    networks:
+      default:
+        aliases:
+          - jaeger.ottest
