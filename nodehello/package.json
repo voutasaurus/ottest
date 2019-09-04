@@ -1,0 +1,17 @@
+{
+  "name": "nodehello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-opentracing": "^0.1.1",
+    "jaeger-client": "^3.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
