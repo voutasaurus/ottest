@@ -58,7 +58,7 @@ func ping(ctx context.Context, url string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	req = req.WithContext(ctx)
+	req = withTrace(ctx, req)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return "", err

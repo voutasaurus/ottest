@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"io"
+	"net/http"
 
 	opentracing "github.com/opentracing/opentracing-go"
 	jaeger "github.com/uber/jaeger-client-go"
@@ -42,4 +43,18 @@ func initJaeger(agent, service string) (opentracing.Tracer, io.Closer, error) {
 		return nil, nil, err
 	}
 	return tracer, closer, nil
+}
+
+func withTrace(ctx context.Context, req *http.Request) *http.Request {
+	span := opentracing.SpanFromContext(ctx)
+	if span == nil {
+		// no span to transmit
+		return req.WithContext(ctx)
+	}
+	opentracing.GlobalTracer().Inject(
+		span.Context(),
+		opentracing.HTTPHeaders,
+		opentracing.HTTPHeadersCarrier(req.Header),
+	)
+	return req.WithContext(ctx)
 }

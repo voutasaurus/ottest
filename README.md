@@ -14,7 +14,3 @@ $ ./run.sh
 $ open http://localhost:16686
 $ curl http://localhost:8080
 ```
-
-# TODO
-
-[ ] Each service logs its own span but they are not yet linked.
