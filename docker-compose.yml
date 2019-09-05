@@ -11,7 +11,7 @@ services:
     environment:
       - JAEGER_AGENT_ADDR=jaeger.ottest:6831
       - HELLO_ADDR=:8080
-      - SERVICES=http://nodehello.ottest:3000,http://nesthello.ottest:3000
+      - SERVICES=http://nodehello.ottest:3000/hello,http://nesthello.ottest:3000/hello
     ports:
       - 8080:8080
     networks:

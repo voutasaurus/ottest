@@ -9,6 +9,11 @@ const port = 3000;
 app.use(middleware({tracer: tracer}));
 
 app.get('/', (req, res) => {
+    // TODO: hit other services
+  res.send('Hello Node!')
+})
+
+app.get('/hello', (req, res) => {
   res.send('Hello Node!')
 })
 
