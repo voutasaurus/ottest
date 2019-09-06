@@ -24,6 +24,7 @@ services:
     container_name: nodehello.ottest
     environment:
       - JAEGER_ENDPOINT=http://jaeger.ottest:14268/api/traces
+      - SERVICES=http://gohello.ottest:8080/hello,http://nesthello.ottest:3000/hello
     ports:
       - 8081:3000
     networks:
