@@ -10,6 +10,18 @@ import (
 	config "github.com/uber/jaeger-client-go/config"
 )
 
+func startReqSpan(r *http.Request, name string) (context.Context, opentracing.Span) {
+	spCtx, err := opentracing.GlobalTracer().Extract(
+		opentracing.HTTPHeaders,
+		opentracing.HTTPHeadersCarrier(r.Header),
+	)
+	if err != nil || spCtx == nil {
+		return startSpan(r.Context(), name)
+	}
+	sp, ctx := opentracing.StartSpanFromContext(r.Context(), name, opentracing.ChildOf(spCtx))
+	return ctx, sp
+}
+
 func startSpan(ctx context.Context, name string) (context.Context, opentracing.Span) {
 	sp, ctx := opentracing.StartSpanFromContext(ctx, name)
 	return ctx, sp

@@ -27,7 +27,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		ctx, sp := startSpan(r.Context(), "gohello-gateway")
+		ctx, sp := startReqSpan(r, "gohello-gateway")
 		defer sp.Finish()
 		logger.Println("/ hit")
 
@@ -46,7 +46,7 @@ func main() {
 		fmt.Fprintf(w, "go hello, got messages for other services: %v", rr)
 	})
 	mux.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		_, sp := startSpan(r.Context(), "gohello-hello")
+		_, sp := startReqSpan(r, "gohello-hello")
 		defer sp.Finish()
 		logger.Println("/hello hit")
 		fmt.Fprintln(w, "Hello Go!")
