@@ -1,6 +1,6 @@
 # wait for services to be up
 function waitup {
-  for i in {1..10}
+  for i in {1..60}
   do
       curl http://localhost:8082/hello 2> /dev/null
       if [[ $? == 0 ]]
@@ -15,7 +15,7 @@ function waitup {
 _=$(waitup)
 if [[ $? -ne 0 ]]
 then
-    >&2 echo "stack unreachable after 10 seconds wait time"
+    >&2 echo "stack unreachable after 60 seconds wait time"
     exit 1
 fi
 
