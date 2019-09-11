@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as etrace from 'express-opentracing';
 import { initTracerFromEnv } from 'jaeger-client';
+import { initGlobalTracer } from 'opentracing';
 
 function initTracer(serviceName) {
   const config = {
@@ -24,7 +25,9 @@ function initTracer(serviceName) {
       },
     },
   };
-  return initTracerFromEnv(config, options);
+  var tracer = initTracerFromEnv(config, options);
+  initGlobalTracer(tracer);
+  return tracer;
 };
 
 async function bootstrap() {

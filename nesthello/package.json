@@ -23,8 +23,11 @@
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
     "@nestjs/platform-express": "^6.0.0",
+    "dotenv": "^8.1.0",
     "express-opentracing": "^0.1.1",
     "jaeger-client": "^3.15.0",
+    "killport": "^1.0.1",
+    "opentracing": "^0.14.4",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"
