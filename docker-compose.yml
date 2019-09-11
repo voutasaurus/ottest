@@ -40,8 +40,6 @@ services:
       - SERVICES=http://gohello.ottest:8080/hello,http://nodehello.ottest:3000/hello
     ports:
       - 8082:3000
-    volumes:
-      - ./nesthello:/app
     networks:
       default:
         aliases:

@@ -4,4 +4,4 @@ WORKDIR /app
 RUN apk add --no-cache --virtual .gyp python make g++ \
     && npm install \
     && apk del .gyp
-CMD [ "npm", "run", "start:debug" ]
+CMD [ "npm", "run", "start" ]
