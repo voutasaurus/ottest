@@ -26,7 +26,7 @@
     "dotenv": "^8.1.0",
     "express-opentracing": "^0.1.1",
     "jaeger-client": "^3.15.0",
-    "killport": "^1.0.1",
+    "killport": "^1.0.2",
     "opentracing": "^0.14.4",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
