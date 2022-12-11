@@ -5,7 +5,7 @@
   "main": "hello.js",
   "dependencies": {
     "axios": "^0.19.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-opentracing": "^0.1.1",
     "jaeger-client": "^3.15.0"
   },
