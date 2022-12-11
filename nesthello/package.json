@@ -22,7 +22,7 @@
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
-    "@nestjs/platform-express": "^6.0.0",
+    "@nestjs/platform-express": "^9.2.1",
     "dotenv": "^8.1.0",
     "express-opentracing": "^0.1.1",
     "jaeger-client": "^3.15.0",
